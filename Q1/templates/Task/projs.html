@@ -1,0 +1,69 @@
+{% extends 'common/base.html' %}
+{% load static %}
+<style> a:visited {color: black;}</style>
+
+
+{% block content %}
+
+<main class="page projects-page">
+    <section class="portfolio-block projects-cards">
+        <div class="container">
+            <div class="heading">
+                <h2>Your Tasks</h2>
+            </div>
+
+            {% if messages %}
+            {% for message in messages %}
+            
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+
+            <!-- Yahan pe message.info bhi add karke you can change the color of you alert check
+            django docs and sweet alert  -->
+            
+            {% endfor %}
+            {% endif %}
+
+            <div class="d-flex justify-content-end" >
+                <button class="btn btn-primary my-3  "><a href="{% url 'NewProj' %}">Add Project</a></button>
+            </div>
+            <div class="row">
+                {% if proj %}
+                {% for i in proj %}
+                <div class="col-md-6 col-lg-4">
+                    {% if i.complete %}
+                    <div class="card border-0"><a href="{% url 'Pjdeetz' i.text %}"><img height="260px" width="80px" class="card-img-top scale-on-hover" src="{% static 'img/Tick.jpg' %}" alt="Card Image"></a>
+                    {% else %}
+                    <div class="card border-0"><a href="{% url 'Pjdeetz' i.text %}"><img height="260px" width="80px" class="card-img-top scale-on-hover" src="{% static 'img/wrong.jpg' %}" alt="Card Image"></a>
+                    {% endif %}
+                        <div class="card-body">
+                            <h6><a href="#"> {{i.text}} </a></h6>
+                            {% if i.complete %}
+                            <p class="text-success" >HO GAYA TASK</p>
+                            {% else %}
+                            <p class="text-danger" >BHAI TASK IS NOT DONEE</p>
+                            {% endif %}
+
+
+                            <button class="btn btn-outline-warning" ><a href="{% url 'UpProj' i.id %}">Update</a></button>
+                            <button class="btn btn-outline-danger" ><a href="{% url 'DelProj' i.id %}">Delete</a></button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                {% else %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0"><img class="card-img-top scale-on-hover" src="{% static 'img/nature/image1.jpg' %}" alt="Card Image">
+                        <div class="card-body">
+                            <h6><a href="#"> No project sori</a></h6>
+                        </div>
+                    </div>
+                </div>                
+                {% endif %}
+            </div>
+        </div>
+</main>
+ 
+{% endblock %}

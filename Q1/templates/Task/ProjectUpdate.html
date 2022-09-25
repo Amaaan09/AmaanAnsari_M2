@@ -1,0 +1,30 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<main class="page projects-page">
+    <section class="portfolio-block projects-cards">
+        <div class="container">
+            <!-- no action is supposed to be passed through here cuz we return back here -->
+            <form action="" method="post" >
+                {% csrf_token %}
+
+                <label>Task</label>
+                {% render_field form.text %}
+                <br>
+                <label>Is it completed</label>
+                {% render_field form.complete %}
+                <br>
+
+                <button type="submit">Submit</button>
+
+            </form>
+
+            
+        </div>
+    </section>
+</main>
+ 
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<p style="margin-top: 100px;"></p>
+<p style="margin-top: 50px;"></p>
+
+<div class="container mt-5">
+
+
+  <div class="container">
+    <div class="heading">
+      <div class="bg-black text-white m-5 p-5 fs-3 text-center">Please Log-In</div>
+    </div>
+
+    <form method="POST" >
+
+        {% csrf_token %}
+
+        <!-- Name input -->
+        <div class="form-outline mb-4">
+          <input type="text" id="form2Example1" name="user_name" class="form-control" />
+          <label class="form-label" for="form2Example1">Name</label>
+        </div>
+    
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <input type="password" id="form2Example2" name="user_pass" class="form-control" />
+          <label class="form-label" for="form2Example2">Password</label>
+        </div>
+    
+    
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+    
+
+        
+  <!-- Register buttons -->
+  <div class="text-center">
+    <p>Not a member? <a href="{% url 'signup' %}">Register</a></p>
+  </div>
+
+
+      </form>
+
+
+    </div>
+  </div>
+{% endblock %}
